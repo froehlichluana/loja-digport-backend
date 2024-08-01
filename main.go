@@ -1,5 +1,13 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
-	StartServer()
+	
+		fmt.Println("Bem vinda à loja DigPort!")
+
+	
 }
+

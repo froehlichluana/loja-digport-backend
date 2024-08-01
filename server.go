@@ -25,8 +25,11 @@ func addProduct(w http.ResponseWriter, r *http.Request) {
 	var product model.Product
 	json.NewDecoder(r.Body).Decode(&product)
 
-	registerProduct(product)
-
+	err := registerProduct(product)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(model.Error{ErrorMessage: err.Error()})
+	}
 	w.WriteHeader(http.StatusCreated)
 }
 

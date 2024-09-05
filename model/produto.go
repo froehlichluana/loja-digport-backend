@@ -89,6 +89,7 @@ func CriaProduto (prod Produto) error {
 	}
 
 	db := db.ConectaBancoDados()
+	defer db.Close()
 	id := uuid.NewString()
 	nome := prod.Nome
 	preco := prod.Preco
@@ -121,3 +122,20 @@ func CriaProduto (prod Produto) error {
 
 		return prod.Nome == nomeProduto 
 	}
+
+	func RemoveProduto(id string) error {
+		db := db.ConectaBancoDados()
+		defer db.Close()
+
+		//DELETE FROM [nome da tabela] WHERE [nome do campo] = valor
+		_, err := db.Exec("DELETE FROM PRODUTOS WHERE id = $1", id)
+
+		if err != nil{
+
+		fmt.Printf("ocorreu um erro ao tentar excluir produto: %s", err.Error())
+		return fmt.Errorf("ocorreu um erro ao tentar excluir produto: %w", err)
+		}
+		fmt.Println("produto excluído")
+
+		return nil
+	} 

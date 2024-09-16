@@ -32,10 +32,10 @@ func criaTabelas() {
     CREATE TABLE IF NOT EXISTS USUARIO (
         id SERIAL PRIMARY KEY,
         nome VARCHAR,
-        telefone VARCHAR,
-        endereco VARCHAR,
         email VARCHAR NOT NULL UNIQUE,
         senha VARCHAR NOT NULL
+		telefone VARCHAR,
+        endereco VARCHAR,
     );`
 
 	_, err := db.Exec(createUsersTable)

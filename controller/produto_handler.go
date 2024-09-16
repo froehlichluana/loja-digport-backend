@@ -21,11 +21,11 @@ func BuscaProdutoPorNomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CriaProdutosHandler(w http.ResponseWriter, r *http.Request) {
-	var produto model.Produto
-	json.NewDecoder(r.Body).Decode(&produto)
+	var Produto model.Produto
+	json.NewDecoder(r.Body).Decode(&Produto)
 
 
-	error := model.CriaProduto(produto)
+	error := model.CriaProduto(Produto)
 	if error != nil {
 		w.WriteHeader(http.StatusBadRequest)
 	}else{

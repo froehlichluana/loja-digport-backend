@@ -1,0 +1,21 @@
+meta {
+  name: Cria usuario
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/usuarios
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "nome": "Pam Beesly",
+      "senha": "9j9w92-2",
+      "email": "pam.test@gmail.com", 
+      "telefone": "123456789", 
+      "endereco": "Rua Scranton, 28"
+  }
+}

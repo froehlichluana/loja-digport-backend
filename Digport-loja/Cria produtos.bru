@@ -1,0 +1,133 @@
+meta {
+  name: Cria produtos
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/produto
+  body: json
+  auth: none
+}
+
+body:json {
+  [
+    {
+      "name": "Cama Janeleira",
+      "description": "Cama janeleira para gatos em mdf",
+      "category": "Caminhas",
+      "id": "7493jr03",
+      "price": 74.97,
+      "quantity": 150,
+      "image": "CamaJaneleira.jpg"
+    },
+    {
+      "name": "Cama com Ventosa",
+      "description": "Cama suspensa para janela, vidro e azulejo com ventosas",
+      "category": "Caminhas",
+      "id": "748jkf90",
+      "price": 236.87,
+      "quantity": 340,
+      "image": "CamaVentosa.jpg"
+    },
+    {
+      "name": "Cama Rede",
+      "description": "Cama alta rede em madeira lavável",
+      "category": "Caminhas",
+      "id": "j3993dh7",
+      "price": 269.99,
+      "quantity": 107,
+      "image": "CamaAlta.jpg"
+    },
+    {
+      "name": "Cama Nuvem",
+      "description": "Cama pelúcia redonda",
+      "category": "Caminhas",
+      "id": "wk978557",
+      "price": 433.62,
+      "quantity": 97,
+      "image": "CamaNuvem.jpg"
+    },
+    {
+      "name": "Fonte Automática",
+      "description": "Fonte de água elétrica automática",
+      "category": "Comedoures e bebedoures",
+      "id": "39f38736",
+      "price": 299.70,
+      "quantity": 178,
+      "image": "BebedouroAutomatico.jpg"
+    },
+    {
+      "name": "Bebedouro Porcelana",
+      "description": "Bebedouro porcelana para gatos",
+      "category": "Comedoures e bebedoures",
+      "id": "yh7520428",
+      "price": 67.99,
+      "quantity": 270,
+      "image": "BebedorPorcelana.jpg"
+    },
+    {
+      "name": "Comedouro Porcelana",
+      "description": "Comedouro porcelana concavo",
+      "category": "Comedoures e bebedoures",
+      "id": "wpo10374",
+      "price": 76.87,
+      "quantity": 340,
+      "image": "ComedouroPorcelana.jpg"
+    },
+    {
+      "name": "Comedouro Alto",
+      "description": "Comedouro alto em madeira e porcelana",
+      "category": "Comedoures e bebedoures",
+      "id": "jdow9853",
+      "price": 124.67,
+      "quantity": 100,
+      "image": "ComedouroAlto.jpg"
+    },
+    {
+      "name": "Catnip spray",
+      "description": "Spray de erva do gato/catnip",
+      "category": "Brinquedos",
+      "id": "dgw34509",
+      "price": 27.56,
+      "quantity": 540,
+      "image": "CatnipSpray.jpg"
+    },
+    {
+      "name": "Brinquedo Rato",
+      "description": "Brinquedo rato com catnip",
+      "category": "Brinquedos",
+      "id": "4685kr78",
+      "price": 31.45,
+      "quantity": 430,
+      "image": "RatoCatnip.jpg"
+    },
+    {
+      "name": "Brinquedo fita",
+      "description": "Brinquedo varinha com fita cetim para gatos",
+      "category": "Brinquedos",
+      "id": "ejdw3456",
+      "price": 46.99,
+      "quantity": 178,
+      "image": "BrinquedoFita.jpg"
+    },
+    {
+      "name": "Arranhador Papelão",
+      "description": "Arranhador de papelão para gatos em formato rampa",
+      "category": "Brinquedos",
+      "id": "typ71290",
+      "price": 87.69,
+      "quantity": 87,
+      "image": "Arranhador.jpg"
+    },
+    {
+      "name": "Test",
+      "description": "Error test",
+      "category": "test",
+      "id": "typ71290",
+      "price": 89.09,
+      "quantity": 98,
+      "image": "test.jpg"
+    }
+  ]
+}

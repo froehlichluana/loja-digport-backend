@@ -8,6 +8,8 @@ import (
 	"github.com/froehlichluana/loja-digport-backend/model"
 )
 
+
+
 func CriaUsuarioHandler(w http.ResponseWriter, r *http.Request) {
 	var usuario model.Usuario
 	json.NewDecoder(r.Body).Decode(&usuario)
@@ -31,5 +33,21 @@ func CriaUsuarioHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusCreated)
 		return
 	}
-
 }
+
+func BuscaUsuarioPorEmail(w http.ResponseWriter, r *http.Request){
+
+		email := r.URL.Query().Get("email")
+
+		usuario, err := model.BuscaUsuarioPorEmail(email)
+		if err != nil {
+			fmt.Println("Erro ao buscar usuário: ", err)
+			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+
+		json.NewEncoder(w).Encode(usuario)
+
+	}
+
+

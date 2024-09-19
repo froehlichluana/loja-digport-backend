@@ -18,7 +18,7 @@ func HandleRequests() {
 	route.HandleFunc("/produto", controller.AtualizaProdutoHandler).Methods("PUT")
 
 	route.HandleFunc("/usuarios", controller.CriaUsuarioHandler).Methods("POST")
-	//route.HandleFunc("/usuarios", controller.BuscaUsuarioPorEmail.Methods("GET"))
+	route.HandleFunc("/usuarios", controller.BuscaUsuarioPorEmail).Methods("GET")
 	//route.HandleFunc("usuarios/login",controller.LoginHandler).Methods.("POST")
 
 	c := cors.New(cors.Options{

@@ -33,9 +33,9 @@ func criaTabelas() {
         id SERIAL PRIMARY KEY,
         nome VARCHAR,
         email VARCHAR NOT NULL UNIQUE,
-        senha VARCHAR NOT NULL
+        senha VARCHAR NOT NULL,
 		telefone VARCHAR,
-        endereco VARCHAR,
+        endereco VARCHAR
     );`
 
 	_, err := db.Exec(createUsersTable)

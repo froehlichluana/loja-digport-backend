@@ -58,6 +58,15 @@ func hashPassword(senha string) (string, error) {
 	return string(bytes), nil
 }
 
+func ValidaLogin (hash string, senhatxt string) error {
+	err:=bcrypt.CompareHashAndPassword([]byte(hash), []byte(senhatxt))
+
+	if err != nil{
+		return fmt.Errorf("senha inválida. usuário não autorizado")
+	}
+	return nil
+}
+
 func BuscaUsuarioPorEmail(email string) (*Usuario, error) {
 	db := db.ConectaBancoDados()
 	defer db.Close()
@@ -71,4 +80,34 @@ func BuscaUsuarioPorEmail(email string) (*Usuario, error) {
 		return nil, err
 	}
 	return &usuario, nil
+}
+
+
+func AtualizaUsuario(usuario Usuario) error {
+    db := db.ConectaBancoDados()
+    defer db.Close()
+ 
+    id := usuario.ID
+    nome := usuario.Nome
+    email := usuario.Email
+    //senha := usuario.Senha
+    telefone := usuario.Telefone
+    endereco := usuario.Endereco
+ 
+    result, err := db.Exec("UPDATE produtos SET nome= $1, email= $2, telefone= $3, endereco= $4 where id= $5", nome, email, telefone, endereco)
+    if err != nil {
+        panic(err.Error())
+    }
+    rowsAffected, err := result.RowsAffected()
+    if err != nil {
+        panic(err.Error())
+    }
+ 
+    if rowsAffected == 0 {
+        return fmt.Errorf("produto não encontrado")
+    }
+ 
+    fmt.Printf("Produto %s atualizado com sucesso (%d row affected)\n", id, rowsAffected)
+ 
+    return nil
 }

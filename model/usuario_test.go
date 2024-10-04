@@ -11,7 +11,7 @@ func TestValidaUsuario(t *testing.T) {
 		usuario := Usuario{Nome: "Jim", Email: "Jim@test.com", Senha: "73h93p0934"}
 
 		//act
-		err := usuario.Validar(usuario)
+		err := usuario.Validar()
 
 		//assert
 		assert.NoError(t, err)
@@ -23,7 +23,7 @@ func TestValidaUsuario(t *testing.T) {
 		usuario := Usuario{Nome: "Jim", Email: "jim@test.com", Senha: ""}
 		expectedErrorMessage := "senha não pode ser vazia."
 		//act
-		err := usuario.Validar(usuario)
+		err := usuario.Validar()
 
 		//assert
 		assert.Error(t, err)
@@ -36,7 +36,7 @@ func TestValidaUsuario(t *testing.T) {
 		usuario := Usuario{Nome: "Jim", Email: "", Senha: "0384r93j"}
 		expectedErrorMessage := "email do usuário não pode ser vazio"
 		//act
-		err := usuario.Validar(usuario)
+		err := usuario.Validar()
 
 		//assert
 		assert.Error(t, err)
@@ -49,7 +49,7 @@ func TestValidaUsuario(t *testing.T) {
 		usuario := Usuario{Nome: "", Email: "jim@test.com", Senha: "0384r93j"}
 		expectedErrorMessage := "nome do usuário não pode ser vazio"
 		//act
-		err := usuario.Validar(usuario)
+		err := usuario.Validar()
 
 		//assert
 		assert.Error(t, err)

@@ -139,3 +139,32 @@ func CriaProduto (prod Produto) error {
 
 		return nil
 	} 
+
+	func AtualizaProduto(prod Produto) error {
+		db := db.ConectaBancoDados()
+		defer db.Close()
+	 
+		id := prod.ID
+		nome := prod.Nome
+		//preco := prod.Preco
+		descricao := prod.Descricao
+		//imagem := prod.Imagem
+		//quantidade := prod.QuantidadeEmEstoque
+	 
+		result, err := db.Exec("UPDATE produtos SET nome= $1, descricao= $2 where id= $3", nome, descricao, id)
+		if err != nil {
+			panic(err.Error())
+		}
+		rowsAffected, err := result.RowsAffected()
+		if err != nil {
+			panic(err.Error())
+		}
+	 
+		if rowsAffected == 0 {
+			return fmt.Errorf("produto não encontrado")
+		}
+	 
+		fmt.Printf("Produto %s atualizado com sucesso (%d row affected)\n", id, rowsAffected)
+	 
+		return nil
+	}

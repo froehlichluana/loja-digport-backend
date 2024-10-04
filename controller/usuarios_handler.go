@@ -2,13 +2,16 @@ package controller
 
 import (
 	"encoding/json"
-	"net/http"
 	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/golang-jwt/jwt"
 
 	"github.com/froehlichluana/loja-digport-backend/model"
 )
 
-
+var jwtKey = []byte("secret")
 
 func CriaUsuarioHandler(w http.ResponseWriter, r *http.Request) {
 	var usuario model.Usuario
@@ -50,4 +53,54 @@ func BuscaUsuarioPorEmail(w http.ResponseWriter, r *http.Request){
 
 	}
 
+	func LoginHandler(w http.ResponseWriter, r *http.Request){
+		var usuario model.Usuario
+		json.NewDecoder(r.Body).Decode(&usuario)
+	
+		username := usuario.Email
+		senhatxt := usuario.Senha
+		
+		user, error := model.BuscaUsuarioPorEmail(username)
+		if error != nil{
+			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+
+		hash := user.Senha
+
+		error = model.ValidaLogin(hash, senhatxt)
+
+		if error != nil {
+			//fmt.Println("Erro ao validar senha:")
+			//w.WriteHeader(http.StatusNotFound)
+			dataExpiracao := time.Now().Add(5 * time.Minute)
+		standardToken := &jwt.StandardClaims{
+			ExpiresAt: dataExpiracao.Unix(),
+		}
+
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, standardToken)
+		tokenString, err := token.SignedString(jwtKey)
+
+		if err != nil {
+			fmt.Println("Erro ao validar jwt:")
+			w.WriteHeader(http.StatusUnauthorized)
+
+			return 
+
+		}
+
+		w.Write([]byte(tokenString))
+		}else{
+			w.WriteHeader(http.StatusUnauthorized)
+		}
+
+		
+
+	}
+
+	
+
+	func AtualizaUsuario(w http.ResponseWriter, r *http.Request){
+		
+	}
 
